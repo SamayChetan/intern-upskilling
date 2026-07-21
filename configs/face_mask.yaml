@@ -1,0 +1,9 @@
+path: /home/samay/internship-task/datasets/face_mask/archive/dataset
+
+train: images/train
+val: images/valid
+test: images/test
+
+names:
+  0: no_mask
+  1: mask
