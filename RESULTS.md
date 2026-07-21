@@ -108,3 +108,7 @@ When a mask was worn below the nose or around the chin, the model often classifi
 A YOLOv8n object detection model was successfully trained for face mask detection using a custom dataset in YOLO format. The model achieved strong performance, with a validation mAP@0.5 of **89.54%** and a test mAP@0.5 of **88.23%**. Inference benchmarking showed an average latency of **114.27 ms per image** (approximately **8.75 FPS**) on a CPU.
 
 Although the model performed well overall, failure analysis revealed challenges with duplicate detections, false positives caused by hand gestures and handheld objects, and incorrect classification of improperly worn masks. These observations provide clear directions for future improvements through better data collection, annotation, and model scaling.
+
+# Training Curves
+
+![Training Curves](assets/results.png)
