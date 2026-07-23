@@ -30,3 +30,6 @@ Thumbs.db
 
 # Environment Variables
 .env
+
+# Test videos
+assets/

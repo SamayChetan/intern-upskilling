@@ -145,3 +145,33 @@ See `OPTIMIZATION.md` for detailed benchmark results.
 - Add confidence threshold configuration.
 - Support batch inference.
 - Add object tracking (ByteTrack).
+
+## Architecture
+
+Input Video
+     │
+     ▼
+OpenCV
+     │
+     ▼
+YOLOv8 Detector
+     │
+     ▼
+Confidence Threshold Check
+     │
+     ▼
+JSON Payload Builder
+     │
+     ▼
+MQTT Publisher
+     │
+     ▼
+MQTT Subscriber
+
+## Responsible AI
+
+This project includes confidence-based uncertainty flagging to improve the reliability of predictions.
+
+When the model produces detections with confidence below 0.5, the application marks the frame as **uncertain** instead of presenting the prediction as completely reliable. This follows the principle of communicating uncertainty rather than making overconfident decisions.
+
+For assistive technologies such as MITRA, this is especially important because users may rely on the system's output in real time. Incorrect but confident predictions can negatively affect user safety. Flagging uncertain predictions allows downstream systems or users to take additional precautions when necessary.
