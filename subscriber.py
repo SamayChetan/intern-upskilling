@@ -1,3 +1,4 @@
+import json
 import paho.mqtt.client as mqtt
 
 BROKER = "test.mosquitto.org"
@@ -11,7 +12,10 @@ def on_connect(client, userdata, flags, reason_code, properties=None):
     print("Subscribe result:", result)
 
 def on_message(client, userdata, msg):
-    print(f"Received: {msg.payload.decode()}")
+    data = json.loads(msg.payload.decode())
+
+    print("\nReceived:")
+    print(json.dumps(data, indent=4))
 
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
 

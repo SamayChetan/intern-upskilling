@@ -145,3 +145,25 @@ See `OPTIMIZATION.md` for detailed benchmark results.
 - Add confidence threshold configuration.
 - Support batch inference.
 - Add object tracking (ByteTrack).
+
+## Architecture
+
+Input Video
+     │
+     ▼
+OpenCV
+     │
+     ▼
+YOLOv8 Detector
+     │
+     ▼
+Confidence Threshold Check
+     │
+     ▼
+JSON Payload Builder
+     │
+     ▼
+MQTT Publisher
+     │
+     ▼
+MQTT Subscriber
