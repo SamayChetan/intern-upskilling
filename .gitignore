@@ -1,9 +1,32 @@
+# Virtual Environment
 .venv/
-.ipynb_checkpoints/
-*.pt
-datasets/
+
+# Python Cache
 __pycache__/
 *.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Training Outputs
+runs/
+
+# Datasets
+datasets/
+
+# Model Weights
+*.pt
+
+# ONNX Models (optional)
+# Uncomment if you don't want to upload ONNX models
+# *.onnx
+
+# Operating System Files
 .DS_Store
 Thumbs.db
-runs/
+
+# VS Code
+.vscode/
+
+# Environment Variables
+.env
