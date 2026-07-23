@@ -1,54 +1,42 @@
-# AI Internship Upskilling
+# Face Mask Detection API
 
-This repository contains my work completed as part of an AI Internship Upskilling Program. The goal is to build a strong foundation in Python, machine learning, deep learning, computer vision, and large language models through hands-on exercises and projects.
+A computer vision project that detects whether people are wearing face masks using a YOLOv8 model exported to ONNX. The application exposes a FastAPI endpoint for inference, publishes detection results over MQTT, and can be deployed using Docker.
 
-## Progress
+---
 
-### Day 1
+## Features
 
-* Git & GitHub
-* NumPy Basics
-* Pandas Basics
+- YOLOv8 face mask detection
+- ONNX Runtime inference
+- FastAPI REST API
+- MQTT integration for publishing detections
+- Docker support
+- Model benchmarking and optimization
 
-### Day 2
+---
 
-* Linux Commands
-* SSH
-* tmux
-* Linear Algebra Basics
+## Project Structure
 
-### Day 3
+```
+.
+├── app.py
+├── benchmark_onnx.py
+├── benchmark_latency.py
+├── export_onnx.py
+├── quantize_model.py
+├── onnx_inference.py
+├── publisher.py
+├── subscriber.py
+├── train_yolo.py
+├── configs/
+├── datasets/
+├── runs/
+├── README.md
+├── OPTIMIZATION.md
+└── requirements.txt
+```
 
-* PyTorch Basics
-* PyTorch Training
-* ResNet Inference
-
-### Day 4
-
-* Hugging Face Transformers
-* Sentiment Analysis
-* Text Generation with DistilGPT-2
-
-### Day 5
-
-* YOLOv8 Basics
-* Object Detection using Ultralytics
-
-### Day 6
-
-* Environment Cleanup
-* Project Documentation
-* Requirements Management
-* Git Workflow
-
-## Files
-
-* `numpy_basics.ipynb`
-* `pytorch_basics.ipynb`
-* `pytorch_training.ipynb`
-* `resnet_inference.ipynb`
-* `huggingface_basics.ipynb`
-* `yolo_basics.ipynb`
+---
 
 ## Installation
 
@@ -59,26 +47,101 @@ git clone <repository-url>
 cd internship-task
 ```
 
-Install the required packages:
+Create and activate a virtual environment:
 
 ```bash
-pip install -r requirements.txt
+python -m venv .venv
+source .venv/bin/activate
 ```
 
-Launch Jupyter Notebook:
+Install dependencies:
 
 ```bash
-jupyter notebook
+python -m pip install -r requirements.txt
 ```
+
+---
+
+## Running the FastAPI Server
+
+Start the API:
+
+```bash
+uvicorn app:app --reload
+```
+
+Open:
+
+```
+http://localhost:8000/docs
+```
+
+Upload an image using the `/predict` endpoint.
+
+---
+
+## MQTT
+
+Run the subscriber:
+
+```bash
+python subscriber.py
+```
+
+The FastAPI application automatically publishes prediction results to the configured MQTT topic after every inference.
+
+---
+
+## Docker
+
+Build the image:
+
+```bash
+docker build -t face-mask-api .
+```
+
+Run the container:
+
+```bash
+docker run -p 8000:8000 face-mask-api
+```
+
+Open:
+
+```
+http://localhost:8000/docs
+```
+
+---
+
+## Model Optimization
+
+The project includes:
+
+- ONNX export
+- Dynamic quantization
+- Latency benchmarking
+- Performance comparison
+
+See `OPTIMIZATION.md` for detailed benchmark results.
+
+---
 
 ## Technologies Used
 
-* Python
-* NumPy
-* Pandas
-* PyTorch
-* Hugging Face Transformers
-* Ultralytics YOLOv8
-* Jupyter Notebook
-* Git & GitHub
+- Python
+- YOLOv8 (Ultralytics)
+- ONNX Runtime
+- FastAPI
+- MQTT (Paho MQTT)
+- Docker
+- OpenCV
 
+---
+
+## Future Improvements
+
+- Move deployed models into a dedicated `models/` directory.
+- Add confidence threshold configuration.
+- Support batch inference.
+- Add object tracking (ByteTrack).
